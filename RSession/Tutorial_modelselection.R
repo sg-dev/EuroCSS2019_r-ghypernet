@@ -99,9 +99,8 @@ fblist <- list(fb=fb_pred, fb_eps=fb_eps)
 
 ###### fr + fb
 
-
 (frfb.m <- nrm(w = c(frlist,fblist), adj = adj, directed = F, selfloops = F, init=c(coef(fr.m),coef(fb.m))))
-tmp <- nrmChoose(adj = adj, w.list = list(class, fblist), directed = F, selfloops = F)
+
 ###### full
 
 
