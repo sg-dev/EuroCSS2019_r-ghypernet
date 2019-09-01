@@ -8,7 +8,6 @@
 
 ## load relevant packages
 library(ghypernet)
-library(networkRegression)
 library(texreg) # for regression tables
 library(ggplot2) 
 library(GGally) #for network plots using ggplot2
@@ -18,21 +17,22 @@ library(GGally) #for network plots using ggplot2
 # Part 2: Running gHypEG regressions
 # Part 3: Model assessment, simulations and goodness-of-fit
 
-## load tutorial data set
-data("swissParliament_network", package = "ghypernet")
-#load("../data/swissParliament_network.RData")
 # Data: excerpt of over 200 MPs of the Swiss National Council.
 
+data('cospons_mat', package = 'ghypernet')
 ## cospons_mat: contains the adjacency matrix of 163 x 163 MPs.
   #It contains the number of times one MP (rows) supports the submitted proposals of
   #another MP (columns).
+data('dt', package = 'ghypernet')
 ## dt: contains different attributes of the 163 MPs, such as their names, 
   #affiliation (variable: *parlGroup*), the Canton (or state) they represent
   #their party affiliation (variable: *party*), their parliamentary group
   #(variable: *canton*), their gender  (variable: *gender*)
   #and date of birth  (variable: *birthdate*).
+data('dtcommittee', package = 'ghypernet')
 ## dtcommittee: a list of committees each MP was part of during their stay in 
   #parliament
+data('onlinesim_mat', package = 'ghypernet')
 ## onlinesim_mat: a similarity matrix of how similar two MPs are in their online
   #social media presence (shared supportees).
 
@@ -90,20 +90,17 @@ shp_cospons_unweighted[1:5, 1:3]
 #Note: the unweighted shared partner statistic is very unreliable for dense multi-edge graphs
 
 # the weighted matrix..
-shp_cospons_weighted <- sharedPartner_stat(cospons_mat, directed = TRUE, 
-                                           zero_values = .1)
+shp_cospons_weighted <- sharedPartner_stat(cospons_mat, directed = TRUE) + 1
 shp_cospons_weighted[1:5, 1:3]
 
 # for directed networks, you can calculate incoming and outgoing triadic closure
 shp_cospons_incoming <- sharedPartner_stat(cospons_mat, directed = TRUE,
-                                           triad.type = 'directed.incoming',
-                                           zero_values = .1)
+                                           triad.type = 'directed.incoming') + 1
 shp_cospons_incoming[1:5, 1:3]
 # incoming: two nodes have the same supporter
 
 shp_cospons_outgoing <- sharedPartner_stat(cospons_mat, directed = TRUE,
-                                           triad.type = 'directed.outgoing', 
-                                           zero_values = .1)
+                                           triad.type = 'directed.outgoing') + 1
 shp_cospons_outgoing[1:5, 1:3]
 # outgoing: two nodes support the same third node
 
