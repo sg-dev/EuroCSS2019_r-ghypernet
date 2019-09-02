@@ -8,7 +8,7 @@ Please download the repository, or better clone it to your desktop. You can
 also create an R-project (that automatically clones the repository for you and
 creates a project for you).
 
-Please load the package `r-hypernets`: 
+Please load the package `r-ghypernets`: 
 
 ```{r}
 library(devtools)
