@@ -65,6 +65,8 @@ data("highschool.predictors")
 load('highschoolData.RData')
 adj <- contacts.adj
 
+# ghype
+
 triangles_ij <- sharedPartner_stat(adj, directed = FALSE)
 (nr.mnoddegnotri <- nrm(w = list(block=highschool.predictors[['class']]*10),
                         adj = as.matrix(adj), directed = F, selfloops = F, regular = TRUE))
@@ -81,6 +83,8 @@ AIC(nr.mnoddegnotri)
 AIC(nr.mddegnotri)
 AIC(nr.mnoddeg)
 AIC(nr.mddeg)
+
+# ergm
 
 school <- network(adj, directed = FALSE)
 school %e% "contexts" = adj

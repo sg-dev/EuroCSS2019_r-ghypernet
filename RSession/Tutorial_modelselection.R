@@ -24,12 +24,16 @@ genderHomo <- Vectorize(FUN = Vectorize(FUN = samecat, vectorize.args = 'v'), ve
 #### gender
 
 homo.m <- nrm(w = list(Ghomo=genderHomo), adj = adj, directed = FALSE, selfloops = FALSE)
+summary(homo.m)
 
 gender <- list(M=genderM_adj, 'F'=genderF_adj, U=genderNA_adj)
 
 gender.m <- nrm(w = gender, adj = adj, directed = FALSE, selfloops = FALSE, init=c(0.32,0.35,0.1))
+summary(gender.m)
+
 AIC(homo.m)
 AIC(gender.m)
+AIC(homo.m)-AIC(gender.m)
 
 gender <- list(gender=genderHomo)
 
