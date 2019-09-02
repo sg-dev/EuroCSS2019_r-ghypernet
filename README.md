@@ -12,7 +12,7 @@ Please load the package `r-hypernets`:
 
 ```{r}
 library(devtools)
-install_github("sg-dev/r-ghypernet")
+install_github("gi0na/r-ghypernet")
 ```
 
 ## Program
